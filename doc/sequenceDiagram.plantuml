@@ -1,7 +1,7 @@
 @startuml
+@startuml
 actor "Пользователь" as user
 participant банкомат as atm
-participant "банковская система" as atmSystem
 
 user -> atm: "вставить карту"
 activate user
@@ -17,11 +17,6 @@ loop 3 раза
     else пароль введен неверно менее трех раз
         atm --> user: "сообщение о повторном вводе пин-кода и кол-ве оставшихся попыток"
     else пароль неверен три раза
-        activate atmSystem
-        atm -> atmSystem: "запрос на блокировку карты"
-        atmSystem -> atmSystem: "блокировка карты"
-        atmSystem --> atm: "return"
-        deactivate atmSystem
         atm --> user: "сообщение о блокировке карты"
     end
 end
@@ -38,30 +33,21 @@ loop 3 раза
         atm -> user: "вывод баланса"
         atm -> user: "запрос ввода суммы"
         user --> atm: "ввод суммы"
-
+        atm -> atm: "проверка достаточно ли средств на карте"
             alt средств достаточно
-                atm -> atmSystem: "проверка достаточности средств"
-                activate atmSystem
-                atmSystem -> atmSystem: "проверка счета" 
-                atmSystem --> atm: "return"
-                deactivate atmSystem
                 atm -> user: "выбор номинала"
                 user --> atm: "return"
 
                 alt выбранный номинал есть
-                    atm -> atm: "проверка"
+                    atm -> atm: "проверка есть ли купюры"
                     atm --> user: "выдача денег"
                 else номинала нет 
-                    atm -> atm: "проверка"
+                    atm -> atm: "проверка есть ли купюры"
                     atm --> user: "сообщение о том, что данного номинала нет"
                     atm --> user: "выдача денег"
                 end
             else средств недостаточно
-                atm -> atmSystem: "проверка достаточности средств"
-                activate atmSystem
-                atmSystem -> atmSystem: "проверка счета" 
-                atmSystem --> atm: "return"
-                deactivate atmSystem
+               
                 atm --> user: "сообщение о недостаточности средств"
                 atm -> user: "повторный запрос суммы"
             end
@@ -71,4 +57,5 @@ loop 3 раза
     end
 end
 
+@enduml
 @enduml
