@@ -52,6 +52,6 @@
 
 **ER-диаграмма модели банкомат**
 
-
+![er diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/erDiagram.png)
 
 **BPMN-диаграмма модели банкомат**
