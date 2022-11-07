@@ -1,0 +1,74 @@
+@startuml
+actor "Пользователь" as user
+participant банкомат as atm
+participant "банковская система" as atmSystem
+
+user -> atm: "вставить карту"
+activate user
+activate atm
+
+loop 3 раза
+    atm -> user: "запрос пин-кода"
+    user -> atm: "ввод пин-кода"
+    atm -> atm: "проверка пин-кода"
+
+    alt пароль верен
+        atm --> user: "return"
+    else пароль введен неверно менее трех раз
+        atm --> user: "сообщение о повторном вводе пин-кода и кол-ве оставшихся попыток"
+    else пароль неверен три раза
+        activate atmSystem
+        atm -> atmSystem: "запрос на блокировку карты"
+        atmSystem -> atmSystem: "блокировка карты"
+        atmSystem --> atm: "return"
+        deactivate atmSystem
+        atm --> user: "сообщение о блокировке карты"
+    end
+end
+
+== Опция снятие наличных ==
+user -> atm: "снятие наличных"
+atm --> user: "return"
+user -> atm: "ввод пин-кода"
+atm -> atm: "проверка пин-кода"
+
+loop 3 раза
+    alt пин введен верно 
+        atm --> user: "return"
+        atm -> user: "вывод баланса"
+        atm -> user: "запрос ввода суммы"
+        user --> atm: "ввод суммы"
+
+            alt средств достаточно
+                atm -> atmSystem: "проверка достаточности средств"
+                activate atmSystem
+                atmSystem -> atmSystem: "проверка счета" 
+                atmSystem --> atm: "return"
+                deactivate atmSystem
+                atm -> user: "выбор номинала"
+                user --> atm: "return"
+
+                alt выбранный номинал есть
+                    atm -> atm: "проверка"
+                    atm --> user: "выдача денег"
+                else номинала нет 
+                    atm -> atm: "проверка"
+                    atm --> user: "сообщение о том, что данного номинала нет"
+                    atm --> user: "выдача денег"
+                end
+            else средств недостаточно
+                atm -> atmSystem: "проверка достаточности средств"
+                activate atmSystem
+                atmSystem -> atmSystem: "проверка счета" 
+                atmSystem --> atm: "return"
+                deactivate atmSystem
+                atm --> user: "сообщение о недостаточности средств"
+                atm -> user: "повторный запрос суммы"
+            end
+    else пин неверный
+        atm --> user: "пин введен неверно"
+        atm -> user: "запрос пин-кода" 
+    end
+end
+
+@enduml
