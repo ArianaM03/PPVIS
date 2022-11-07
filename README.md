@@ -61,7 +61,7 @@
 ![use case diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/useCase.png)
 
 **Sequence диаграмма модели банкомата**
-![sequence diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/sqDiagram.png)
+![sequence diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/sequenceqDiagram.png)
 
 **Базовая диаграмма классов модели банкомата**
 ![class diagram base](https://github.com/ArianaM03/PPVIS/blob/main/doc/classDiagramBase.png)
