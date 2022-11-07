@@ -1,0 +1,46 @@
+@startuml
+left to right direction
+
+actor "Пользователь" as user
+
+rectangle "Модель банкомата"{
+    usecase "вставить карту" as insert
+    usecase "достать карту" as get
+    usecase "выбор операции" as choice
+    usecase "ввод пин-кода" as pin 
+    usecase "неверный пин-код" as incorrect
+    usecase "снятие наличных" as cash
+    usecase "пополнение карты с помощью наличных" as replenishment
+    usecase "баланс карты" as balance
+    usecase "выписка по последним операциям" as transactionStatement
+    usecase "перевод средств на другую карту" as transfer
+    usecase "проверка средств на карте" as checking
+    usecase "просмотр баланса" as viewBalance
+    usecase "сообщение о недостатке средств" as lackOfFunds
+    usecase "ввод номера телефона" as phoneNumber
+}
+
+user --> insert
+user --> get
+user --> choice
+
+insert ..> pin: <<include>>
+incorrect ..> pin: <<extend>>
+
+choice ..> cash: <<include>>
+choice ..> replenishment: <<include>>
+choice ..> balance: <<include>>
+choice ..> transactionStatement: <<include>>
+choice ..> transfer: <<include>>
+
+cash ..> checking: <<include>>
+cash ..> viewBalance: <<include>>
+lackOfFunds ..> cash: <<extend>>
+
+transactionStatement ..> phoneNumber: <<include>>
+
+transfer ..> checking: <<include>>
+transfer ..> viewBalance: <<include>>
+lackOfFunds ..> transfer: <<extend>>
+
+@enduml
