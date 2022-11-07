@@ -50,8 +50,34 @@
 - Добавление печати истории карты 
 - Добавление функции отключения банковской карты
 
-**ER-диаграмма модели банкомат**
+**ER-диаграмма модели банкоматa**
 
 ![er diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/erDiagram.png)
 
-**BPMN-диаграмма модели банкомат**
+**BPMN-диаграмма модели банкоматa**
+![bpmn diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/bpmnDiagram.png)
+
+**Use case диаграмма модели банкомата**
+![use case diagram]{https://github.com/ArianaM03/PPVIS/blob/main/doc/useCase.png}
+
+**Sequence диаграмма модели банкомата**
+![sequence diagram]{https://github.com/ArianaM03/PPVIS/blob/main/doc/sqDiagram.png}
+
+**Базовая диаграмма классов модели банкомата**
+![class diagram base]{https://github.com/ArianaM03/PPVIS/blob/main/doc/classDiagramBase.png}
+
+**Диаграммы классов исходя из направлений развития**
+1. Оплата коммунальных услуг
+![first]{https://github.com/ArianaM03/PPVIS/blob/main/doc/classDiagram1.png}
+
+2. Функция отключения карты
+![second]{https://github.com/ArianaM03/PPVIS/blob/main/doc/classDiagram2.png}
+
+3. Печать истории банковской карты
+![third]{https://github.com/ArianaM03/PPVIS/blob/main/doc/classDiagram3.png}
+
+**Интерфейс**
+![interface]{https://github.com/ArianaM03/PPVIS/blob/main/doc/interface.jpg}
+
+**Логика работы (диаграмма активности)**
+![active diagram]{https://github.com/ArianaM03/PPVIS/blob/main/doc/activeDiagram.png}
