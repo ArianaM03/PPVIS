@@ -78,6 +78,3 @@
 
 **Интерфейс**
 ![interface](https://github.com/ArianaM03/PPVIS/blob/main/doc/interface.jpg)
-
-**Логика работы (диаграмма активности)**
-![active diagram](https://github.com/ArianaM03/PPVIS/blob/main/doc/activeDiagram.png)
